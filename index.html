@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慈濟大學 經營管理學系 | Department of Business Management, TCU</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           1. INTERNAL CSS - DESIGN TOKENS & BASE
+           ========================================== */
+        :root {
+            --primary: #3D8B7A;
+            --primary-light: #E4F2EF;
+            --primary-dark: #2A6155;
+            --secondary-coral: #FF8A8A;
+            --accent-yellow: #FFD166;
+            --accent-purple: #E8DFF5;
+            --bg-cream: #FFF9F2;
+            --card-bg: #FFFFFF;
+            --text-main: #2C3E3A;
+            --text-muted: #66827B;
+            --border-radius-lg: 24px;
+            --border-radius-md: 16px;
+            --border-radius-sm: 10px;
+            --shadow-soft: 0 10px 25px rgba(61, 139, 122, 0.08);
+            --shadow-hover: 0 15px 30px rgba(61, 139, 122, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', 'Fredoka', sans-serif;
+            transition: all 0.25s ease-in-out;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(#3D8B7A 0.75px, transparent 0.75px);
+            background-size: 24px 24px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--primary-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Badges & Cute Buttons */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .badge-hot {
+            background: #FFE5E5;
+            color: #E55656;
+        }
+
+        .badge-new {
+            background: #FFF3D6;
+            color: #D9822B;
+        }
+
+        .btn-cute {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(61, 139, 122, 0.25);
+        }
+
+        .btn-cute:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(61, 139, 122, 0.35);
+        }
+
+        /* ==========================================
+           2. HEADER & NAVIGATION
+           ========================================== */
+        header {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            gap: 20px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Integrated TCU Campus Graphic Element */
+        .tcu-logo-img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .logo-text h1 {
+            font-size: 1.45rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'Fredoka', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Search Bar */
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 8px 16px 8px 38px;
+            border-radius: 20px;
+            border: 2px solid var(--primary-light);
+            outline: none;
+            width: 220px;
+            background: var(--bg-cream);
+            font-size: 0.9rem;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            width: 250px;
+            background: white;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            color: var(--primary);
+        }
+
+        /* Integrated Navigation Items */
+        nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .nav-highlight {
+            background: #FFE5E5;
+            color: #D94141;
+            font-weight: 600;
+        }
+
+        .nav-highlight:hover {
+            background: #FFD1D1;
+            color: #B52B2B;
+        }
+
+        /* ==========================================
+           3. HERO CAROUSEL SECTION
+           ========================================== */
+        .hero-section {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .carousel {
+            position: relative;
+            background: linear-gradient(135deg, #E4F2EF 0%, #FFF5E4 100%);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+        }
+
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            padding: 40px 50px;
+            align-items: center;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+        }
+
+        .carousel-slide.active {
+            display: grid;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-content h2 {
+            font-size: 2.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .slide-content p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 22px;
+        }
+
+        .slide-image-box {
+            background: white;
+            padding: 12px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transform: rotate(2deg);
+            position: relative;
+            text-align: center;
+        }
+
+        .slide-image-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .slide-sticker {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--secondary-coral);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transform: rotate(10deg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            color: var(--primary);
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+
+        .carousel-btn.prev { left: 15px; }
+        .carousel-btn.next { right: 15px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(61, 139, 122, 0.3);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--primary);
+            width: 26px;
+            border-radius: 10px;
+        }
+
+        /* ==========================================
+           4. ANNOUNCEMENT BOARD (TAB SYSTEM)
+           ========================================== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        .board-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 40px;
+            border: 2px solid var(--primary-light);
+        }
+
+        .tab-menu {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-radius: var(--border-radius-sm);
+            background: var(--bg-cream);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .news-item:hover {
+            border-color: var(--primary);
+            background: white;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .news-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'Fredoka', sans-serif;
+            min-width: 85px;
+        }
+
+        .news-title {
+            font-weight: 500;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ==========================================
+           5. DEPARTMENT FEATURE HIGHLIGHTS
+           ========================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 26px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+
+        .feature-icon-wrapper {
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+        }
+
+        .icon-green { background: #E4F2EF; color: #3D8B7A; }
+        .icon-pink { background: #FFE5E5; color: #E55656; }
+        .icon-yellow { background: #FFF3D6; color: #D9822B; }
+        .icon-purple { background: #E8DFF5; color: #7B52AB; }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        /* ==========================================
+           6. CURRICULUM & FACULTY SHOWCASE
+           ========================================== */
+        .info-split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 26px;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--primary-light);
+        }
+
+        .info-box h3 {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faculty-mini-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faculty-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            background: var(--bg-cream);
+            border-radius: var(--border-radius-sm);
+        }
+
+        .faculty-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .faculty-info h4 {
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        .faculty-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .curriculum-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill-item {
+            background: var(--bg-cream);
+            border: 1px solid var(--primary-light);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ==========================================
+           7. MODAL DIALOG
+           ========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            max-width: 580px;
+            width: 100%;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 3px solid var(--primary-light);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            background: var(--bg-cream);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .modal-header {
+            margin-bottom: 14px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-top: 8px;
+        }
+
+        .modal-body {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        /* ==========================================
+           8. FOOTER
+           ========================================== */
+        footer {
+            background: white;
+            border-top: 3px solid var(--primary-light);
+            padding: 38px 0 20px;
+            color: var(--text-main);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            margin-bottom: 28px;
+        }
+
+        .footer-col h4 {
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col p, .footer-col li {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            list-style: none;
+        }
+
+        .footer-col i {
+            color: var(--primary);
+            width: 18px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 18px;
+            border-top: 1px solid var(--primary-light);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+            .slide-image-box {
+                display: none;
+            }
+            .info-split-section {
+                grid-template-columns: 1fr;
+            }
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .search-box input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         HEADER & NAVIGATION
+         ========================================== -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-group">
+                    <!-- Integrated campus image with onerror fallback -->
+                    <a href="index.html">
+                        <img src="graph/tcu.jpg" alt="慈濟大學校徽/校園圖" class="tcu-logo-img" onerror="this.onerror=null; this.src='https://placehold.co/120x120/3D8B7A/ffffff?text=TCU+BM';">
+                    </a>
+                    <div class="logo-text">
+                        <h1>慈濟大學 經營管理學系</h1>
+                        <p>Department of Business Management, TCU</p>
+                    </div>
+                </div>
+
+                <!-- Instant Search Filter -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="搜尋最新公告與訊息..." onkeyup="filterAnnouncements()">
+                </div>
+            </div>
+
+            <!-- Integrated Navigation Links -->
+            <nav>
+                <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> 首頁</a>
+                <a href="studentworks.html" class="nav-link nav-highlight"><i class="fa-solid fa-graduation-cap"></i> 學生作品</a>
+                <a href="#about" class="nav-link"><i class="fa-solid fa-heart"></i> 本系簡介</a>
+                <a href="#news" class="nav-link"><i class="fa-solid fa-bullhorn"></i> 最新消息</a>
+                <a href="#faculty" class="nav-link"><i class="fa-solid fa-user-graduate"></i> 師資團隊</a>
+                <a href="#courses" class="nav-link"><i class="fa-solid fa-book-open"></i> 課程規劃</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ==========================================
+             HERO CAROUSEL SECTION
+             ========================================== -->
+        <section class="hero-section">
+            <div class="carousel" id="heroCarousel">
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                    <div class="slide-content">
+                        <span class="badge badge-hot"><i class="fa-solid fa-trophy"></i> 榮譽榜</span>
+                        <h2>熱烈恭賀！「嶼食織心」團隊</h2>
+                        <p>入選 2026 年花蓮縣青年鏈結地方產業推動計畫！展現經管系卓越之地方創生與永續經營力。</p>
+                        <button class="btn-cute" onclick="openModal('賀！經管系「嶼食織心」團隊入選地方產業計畫', '恭喜本系學生團隊參與 2026 花蓮青年鏈結地方產業計畫，獲得評審高度肯定！展現經管系實務導向的教學成果。')">
+                            了解詳情 <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="slide-image-box">
+                        <span class="slide-sticker">狂賀 🌟</span>
+                        <img src="https://placehold.co/500x300/3D8B7A/ffffff?text=BM+TCU+Award" alt="榮譽競賽照片">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <span class="badge badge-new"><i class="fa-solid fa-leaf"></i> 永續綠能專題</span>
+                        <h2>黑水虻處理沼渣專題 榮獲全國第二名</h2>
+                        <p>恭喜經管系團隊參與全國大專院校專題競賽，以黑水虻於沼渣循環利用之商業模式奪得佳績！</p>
+                        <button class="btn-cute" onclick="openModal('黑水虻處理沼渣專題榮獲全國第二名', '本系師生團隊研究黑水虻於農業與有機廢棄物循環利用之創新商業模式，在全台競賽中獲得第二名殊榮！')">
+                            了解詳情 <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="slide-image-box">
+                        <span class="slide-sticker">第 2 名 🏆</span>
+                        <img src="https://placehold.co/500x300/FFD166/334E48?text=Green+Business+Research" alt="黑水虻專題照片">
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <span class="badge"><i class="fa-solid fa-robot"></i> AI 科技應用</span>
+                        <h2>生成式 AI 輔助教育訓練 榮獲佳作</h2>
+                        <p>創新教學成果！運用生成式 AI 結合企業培訓模式，榮獲全國評比佳作殊榮。</p>
+                        <button class="btn-cute" onclick="openModal('生成式 AI 輔助教育訓練佳作', '因應生成式 AI 浪潮，經管系積極將最新科技融入經營管理教學，學生運用 AI 工具設計智慧化教育訓練方案獲得肯定。')">
+                            了解詳情 <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="slide-image-box">
+                        <span class="slide-sticker">AI 創新 💡</span>
+                        <img src="https://placehold.co/500x300/E8DFF5/334E48?text=AI+Training+Project" alt="AI專題照片">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="setSlide(0)"></span>
+                    <span class="dot" onclick="setSlide(1)"></span>
+                    <span class="dot" onclick="setSlide(2)"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ANNOUNCEMENT BOARD (TAB SYSTEM)
+             ========================================== -->
+        <section id="news">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-paper-plane" style="color: var(--primary);"></i> 訊息公告欄</h2>
+                <p>關注慈濟大學經管系最新校務公告、校內活動與競賽消息</p>
+            </div>
+
+            <div class="board-card">
+                <div class="tab-menu">
+                    <button class="tab-btn active" onclick="switchTab('all')"><i class="fa-solid fa-sparkles"></i> 最新消息</button>
+                    <button class="tab-btn" onclick="switchTab('dept')"><i class="fa-solid fa-folder-open"></i> 系務公告</button>
+                    <button class="tab-btn" onclick="switchTab('campus')"><i class="fa-solid fa-building-columns"></i> 校內活動</button>
+                    <button class="tab-btn" onclick="switchTab('contest')"><i class="fa-solid fa-trophy"></i> 校外來文</button>
+                    <button class="tab-btn" onclick="switchTab('media')"><i class="fa-solid fa-circle-play"></i> 影音報導</button>
+                </div>
+
+                <div class="news-list" id="newsContainer">
+                    <!-- JavaScript dynamic content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             FEATURE HIGHLIGHTS
+             ========================================== -->
+        <section id="about">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-star" style="color: #FFC107;"></i> 系所特色 Highlights</h2>
+                <p>培養具備人文素養、永續思維與跨國視野的專業管理人才</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-green">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3>綠色與永續管理</h3>
+                    <p>因應全球 ESG 與淨零浪潮，融入綠色企業經營與永續供應鏈課程。</p>
+                    <span class="badge">永續經營</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-pink">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3>智慧與科技應用</h3>
+                    <p>導入生成式 AI、大數據分析與數位行銷工具，打造科技管理力。</p>
+                    <span class="badge">AI數位應用</span>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-yellow">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3>實務專題與學生作品</h3>
+                    <p>強調動手實作，結合理論與企業專題，展示豐富多元的學生學習成果。</p>
+                    <a href="studentworks.html" class="badge badge-hot">查看學生作品 <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-purple">
+                        <i class="fa-solid fa-hands-holding-heart"></i>
+                    </div>
+                    <h3>慈濟利他人文思維</h3>
+                    <p>強調企業倫理與社會責任，結合理論與利他精神，深受企業青睞。</p>
+                    <span class="badge">企業倫理</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             FACULTY & CURRICULUM
+             ========================================== -->
+        <section id="faculty" class="info-split-section">
+            <div class="info-box">
+                <h3><i class="fa-solid fa-users-gear" style="color: var(--primary);"></i> 溫馨師資陣容</h3>
+                <div class="faculty-mini-list">
+                    <div class="faculty-item">
+                        <div class="faculty-avatar">林</div>
+                        <div class="faculty-info">
+                            <h4>林珍如 教授兼系主任</h4>
+                            <p>專長：企業倫理、人力資源管理、組織行為</p>
+                        </div>
+                    </div>
+                    <div class="faculty-item">
+                        <div class="faculty-avatar">陳</div>
+                        <div class="faculty-info">
+                            <h4>陳教授 (專任教師)</h4>
+                            <p>專長：行銷管理、服務業行銷、消費者行為</p>
+                        </div>
+                    </div>
+                    <div class="faculty-item">
+                        <div class="faculty-avatar">張</div>
+                        <div class="faculty-info">
+                            <h4>張副教授 (專任教師)</h4>
+                            <p>專長：財務管理、綠色金融、投資學</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="courses" class="info-box">
+                <h3><i class="fa-solid fa-compass" style="color: var(--primary);"></i> 核心課程模組</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:15px;">
+                    多元化的經營管理模組，提供學生跨領域發展與實務實習對接：
+                </p>
+                <div class="curriculum-pills">
+                    <div class="pill-item"><i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> 創新創業管理</div>
+                    <div class="pill-item"><i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> 數位行銷與電子商務</div>
+                    <div class="pill-item"><i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> 永續發展與 ESG 策略</div>
+                    <div class="pill-item"><i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> 智慧供應鏈與營運</div>
+                    <div class="pill-item"><i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> 企業實務專題與實習</div>
+                    <div class="pill-item"><i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> 國際企業經營實務</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         MODAL POPUP
+         ========================================== -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <span class="badge badge-hot" id="modalBadge">公告</span>
+                <h3 id="modalTitle">公告標題</h3>
+            </div>
+            <div class="modal-body" id="modalContent">
+                公告詳細內容說明...
+            </div>
+            <div style="text-align: right;">
+                <button class="btn-cute" onclick="closeModal()">關閉視窗</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fa-solid fa-building-columns"></i> 慈濟大學 經營管理學系</h4>
+                    <p><i class="fa-solid fa-location-dot"></i> 花蓮市介仁街67號</p>
+                    <p><i class="fa-solid fa-phone"></i> 電話：03-857-2677 #31682</p>
+                    <p><i class="fa-solid fa-envelope"></i> Email：ss62@gms.tcu.edu.tw</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><i class="fa-solid fa-user-shield"></i> 個資保護與業務窗口</h4>
+                    <p>業務窗口：林珍如主任</p>
+                    <p>聯絡電話：03-857-2677 #31682</p>
+                    <p>歡迎學生與家長來信或來電諮詢！</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><i class="fa-solid fa-link"></i> 快速導覽</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> 首頁 (index.html)</a></li>
+                        <li><a href="studentworks.html"><i class="fa-solid fa-angle-right"></i> 學生作品 (studentworks.html)</a></li>
+                        <li><a href="https://mdm.tcu.edu.tw/" target="_blank"><i class="fa-solid fa-angle-right"></i> 慈濟經管系舊版官網</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2026 慈濟大學 經營管理學系 Department of Business Management, Tzu Chi University.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         INTERNAL JAVASCRIPT
+         ========================================== -->
+    <script>
+        /* 1. Announcement Mock Data */
+        const newsData = [
+            {
+                id: 1,
+                category: 'dept',
+                badge: '榮譽榜',
+                badgeClass: 'badge-hot',
+                date: '2026.03.15',
+                title: '恭賀！本系「嶼食織心」團隊入選2026花蓮青年鏈結地方產業計畫',
+                content: '恭喜經管系學生團隊於「2026花蓮青年鏈結地方產業推動計畫」中脱穎而出！團隊發揮經營管理專業與地方創生精神，深獲評審青睞。'
+            },
+            {
+                id: 2,
+                category: 'contest',
+                badge: '全國競賽',
+                badgeClass: 'badge-new',
+                date: '2026.03.10',
+                title: '黑水虻處理沼渣專題 榮獲全國大專院校專題競賽第二名！',
+                content: '本系同學深入探討循環經濟與黑水虻生物技術之商業化模式，以極具前瞻性與商業可行性的分析報告榮獲全國第二名殊榮！'
+            },
+            {
+                id: 3,
+                category: 'dept',
+                badge: 'AI教學',
+                badgeClass: '',
+                date: '2026.03.02',
+                title: '生成式 AI 輔助教育訓練成果評比榮獲佳作',
+                content: '因應 AI 浪潮，經管系積極推動 AI 科技融入教育訓練與企業實務，學生專題發表成果優異，獲得專家評審評定佳作。'
+            },
+            {
+                id: 4,
+                category: 'dept',
+                badge: '升學喜訊',
+                badgeClass: 'badge-hot',
+                date: '2026.02.25',
+                title: '狂賀！本系畢業生順利錄取台大博士班與成大碩士班！',
+                content: '慈濟經管系學術研究實力深厚，恭喜畢業生錄取國立臺灣大學博士班以及國立成功大學碩士班，全體師生齊聲同賀！'
+            },
+            {
+                id: 5,
+                category: 'campus',
+                badge: '校園活動',
+                badgeClass: '',
+                date: '2026.02.18',
+                title: '114學年度第2學期慈濟大學經管系導師座談會溫馨登場',
+                content: '歡迎全體經管系同學踴躍參與導師座談會，現場提供職涯諮詢、課業輔導以及溫馨茶點，歡迎同學到場交流。'
+            },
+            {
+                id: 6,
+                category: 'contest',
+                badge: '競賽來文',
+                badgeClass: 'badge-new',
+                date: '2026.02.10',
+                title: '轉知：2026 全國綠色企業與永續經營創新創業競賽報名開始',
+                content: '歡迎有興趣參加永續發展、綠色企業創新創業的同學自由組隊參加，詳情請參閱系辦公室公告。'
+            },
+            {
+                id: 7,
+                category: 'media',
+                badge: '影音報導',
+                badgeClass: 'badge-hot',
+                date: '2026.01.20',
+                title: '【影音專訪】慈濟經管系海外實習學長姐分享精彩心路歷程',
+                content: '歡迎觀看最新影音專訪！了解經管系同學如何走入日本與東南亞企業，拓展職場實務體驗與跨國競爭力。'
+            }
+        ];
+
+        /* 2. Announcement Tab Switcher */
+        let currentTab = 'all';
+
+        function switchTab(category) {
+            currentTab = category;
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            renderNews();
+        }
+
+        function renderNews(filteredList = null) {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = '';
+
+            const listToRender = filteredList || newsData.filter(item => currentTab === 'all' || item.category === currentTab);
+
+            if (listToRender.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">目前尚無相關公告訊息。</p>';
+                return;
+            }
+
+            listToRender.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'news-item';
+                div.onclick = () => openModal(item.title, item.content, item.badge, item.badgeClass);
+
+                div.innerHTML = `
+                    <div class="news-left">
+                        <span class="news-date">${item.date}</span>
+                        <span class="badge ${item.badgeClass}">${item.badge}</span>
+                        <span class="news-title">${item.title}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size:0.8rem;"></i>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /* 3. Search Filter */
+        function filterAnnouncements() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (query === '') {
+                renderNews();
+                return;
+            }
+
+            const filtered = newsData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.content.toLowerCase().includes(query)
+            );
+
+            renderNews(filtered);
+        }
+
+        /* 4. Modal Dialog Controls */
+        function openModal(title, content, badge = '訊息', badgeClass = 'badge-hot') {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalContent').innerText = content;
+            const badgeEl = document.getElementById('modalBadge');
+            badgeEl.innerText = badge;
+            badgeEl.className = `badge ${badgeClass}`;
+
+            document.getElementById('announcementModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('announcementModal').classList.remove('active');
+        }
+
+        /* 5. Carousel Controls */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentSlide);
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentSlide);
+            });
+        }
+
+        function moveSlide(step) {
+            showSlide(currentSlide + step);
+        }
+
+        function setSlide(index) {
+            showSlide(index);
+        }
+
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        window.onload = function() {
+            renderNews();
+        };
+    </script>
+</body>
+</html>
